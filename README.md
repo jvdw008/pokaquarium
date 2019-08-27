@@ -40,3 +40,5 @@ Instead, save up enough coins to cover a new pet, one medicine and some food sto
 Enjoy!
 
 Check out more of our games at http://blackjet.co.uk
+
+PS. Download the .zip file to grab the binary and music files to play.

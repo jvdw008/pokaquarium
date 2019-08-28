@@ -23,8 +23,8 @@ from hunger import Hunger                   # Fish hunger object
 from flashtext import Text                  # On-screen text for important messages in-game
 from animation import Animation as Anim     # Animation cass for fish, coins, player etc
 
-import gc
-gc.collect()
+#import gc
+#gc.collect()
 
 # Setup the screen buffer
 pygame.display.init(False)
@@ -168,30 +168,15 @@ while True:
         		    moveX -= inertia
 
             if (eventtype.key == pygame.BUT_C):
-                if (gameState == 0):
-                    if (not musicEnabled and not cPressed):
-                        if (not musicIsPlaying):
-                            musicIsPlaying = True
-                            musicEnabled = True
-                            cPressed = True
-                            tmusic.playMenuMusic(menuSong)
-                            
-                    if (musicEnabled and not cPressed):
-                        if (musicIsPlaying):
-                            musicIsPlaying = False
-                            musicEnabled = False
-                            cPressed = True
-                            tmusic.stopMusic()
-                    
-    		    if (gameState == 1):
+                if (gameState == 1):
     		        # Buy fish
-    		        if (len(fishList) < maxFish and coins >= fishCost):
-    		            fishList.append(Fish(random.getrandbits(1) + 1, random.getrandbits(2)))
-    		            coins -= fishCost
-    		            audio.playButtonPress()
-    		            if (len(fishList) < maxFish):
-    		                flashText = Text(flashTextTimer, "NEW PET PURCHASED")
-    		                audio.playFishBought()
+                    if (len(fishList) < maxFish and coins >= fishCost):
+                        fishList.append(Fish(random.getrandbits(1) + 1, random.getrandbits(2)))
+                        coins -= fishCost
+                        audio.playButtonPress()
+                        if (len(fishList) < maxFish):
+                            flashText = Text(flashTextTimer, "NEW PET PURCHASED")
+                            audio.playFishBought()
     		            
                     #########################################################################################
                     # Check if player has maxFish fish, if so, win level
@@ -209,6 +194,21 @@ while True:
                             coinList.append(Coin(0, 89))
                             gameState = 2
                             flashText = Text(flashTextTimer, "- BUY " + str(maxFish) + " PETS -")
+                            
+                if (gameState == 0):
+                    if (not musicEnabled and not cPressed):
+                        if (not musicIsPlaying):
+                            musicIsPlaying = True
+                            musicEnabled = True
+                            cPressed = True
+                            tmusic.playMenuMusic(menuSong)
+                            
+                    if (musicEnabled and not cPressed):
+                        if (musicIsPlaying):
+                            musicIsPlaying = False
+                            musicEnabled = False
+                            cPressed = True
+                            tmusic.stopMusic()
     		        
             if (eventtype.key == pygame.BUT_B):
                 audio.playButtonPress()
